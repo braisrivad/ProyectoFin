@@ -124,20 +124,20 @@ public class HomeController {
 	 * @return
 	 */
 	@GetMapping("/search")
-	public String buscar(@ModelAttribute("search") Videojuegos vacante, Model model) {
-		
+	public String buscar(@ModelAttribute("search") Videojuegos videojuegos, Model model) {
+		System.out.println("Buscamos por"+videojuegos);
 		/**
 		 * La busqueda de vacantes desde el formulario debera de ser únicamente en Vacantes con estatus 
 		 * "Aprobada". Entonces forzamos ese filtrado.
 		 */
-		vacante.setEstatus("Aprobada");
+		//videojuegos.setEstatus("Aprobada");
 		
 		// Personalizamos el tipo de busqueda...
 		ExampleMatcher matcher  = ExampleMatcher.matching().
 			// and descripcion like '%?%'
 			withMatcher("descripcion", ExampleMatcher.GenericPropertyMatchers.contains());
 		
-		Example<Videojuegos> example = Example.of(vacante, matcher);
+		Example<Videojuegos> example = Example.of(videojuegos, matcher);
 		List<Videojuegos> lista = serviceVideojuegos.buscarByExample(example);
 		model.addAttribute("videojuegos", lista);
 		return "home";

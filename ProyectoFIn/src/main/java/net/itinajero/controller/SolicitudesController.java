@@ -43,7 +43,7 @@ public class SolicitudesController {
 
     // Inyectamos una instancia desde nuestro ApplicationContext
     @Autowired
-	private IVideojuegosService serviceVacantes;
+	private IVideojuegosService serviceVideojuegos;
     
     @Autowired
    	private IUsuariosService serviceUsuarios;
@@ -81,11 +81,11 @@ public class SolicitudesController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/create/{idVacante}")
-	public String crear(Solicitud solicitud, @PathVariable Integer idVacante, Model model) {
+	@GetMapping("/create/{idVideojuego}")
+	public String crear(Solicitud solicitud, @PathVariable Integer idVideojuego, Model model) {
 		// Traemos los detalles de la Vacante seleccionada para despues mostrarla en la vista
-		Videojuegos vacante = serviceVacantes.buscarPorId(idVacante);
-		model.addAttribute("vacante", vacante);
+		Videojuegos videojuegos = serviceVideojuegos.buscarPorId(idVideojuego);
+		model.addAttribute("videojuegos", videojuegos);
 		return "solicitudes/formSolicitud";
 	}
 	

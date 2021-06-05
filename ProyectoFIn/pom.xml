@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>net.itinajero</groupId>
-	<artifactId>empleos</artifactId>
+	<artifactId>videojuegos</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>empleos</name>
-	<description>Aplicacion para publicar ofertas de trabajo.</description>
+	<name>videojuegos</name>
+	<description>Aplicacion para publicar Videojuegos.</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

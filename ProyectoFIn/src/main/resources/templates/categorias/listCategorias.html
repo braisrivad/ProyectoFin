@@ -52,9 +52,9 @@
               </tbody>
             </table>
             <nav th:if="${categorias.totalPages > 0}" aria-label="Page navigation example" >
-			  <ul class="pagination">         
-			    <li class="page-item"><a th:href="@{/categorias/indexPaginate(page=${categorias.number - 1})}" class="page-link">Anterior</a></li>			    
-			    <li class="page-item"><a th:href="@{/categorias/indexPaginate(page=${categorias.number + 1})}" class="page-link">Siguiente</a></li>
+			  <ul class="pagination" >         
+			    <li class="page-item"><a th:href="@{/categorias/indexPaginate(page=${categorias.number - 1})}" class="page-link" th:if="${ categorias.number>0}">Anterior</a></li>			    
+			    <li class="page-item"><a th:href="@{/categorias/indexPaginate(page=${categorias.number + 1})}" class="page-link" th:if="${ categorias.number<categorias.totalPages-1 }">Siguiente</a></li>
 			  </ul>
 			</nav>
           </div>

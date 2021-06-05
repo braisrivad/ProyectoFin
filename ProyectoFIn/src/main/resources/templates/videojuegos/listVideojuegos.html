@@ -22,7 +22,7 @@
 
     <main role="main">     
       <hr>
-      <div class="container-lg "> 
+      <div class="container "> 
 
         <div class="card">
           <h4 class="card-header"><strong>Listado de Videojuegos</strong></h4>              
@@ -63,9 +63,9 @@
               </tbody>
             </table>
 			<nav th:if="${videojuegos.totalPages > 0}" aria-label="Page navigation example" >
-			  <ul class="pagination">         
-				<li class="page-item"><a th:href="@{/videojuegos/indexPaginate(page=${videojuegos.number - 1})}" class="page-link ">Anterior</a></li>			    
-				<li class="page-item"><a th:href="@{/videojuegos/indexPaginate(page=${videojuegos.number + 1})}" class="page-link">Siguiente</a></li>
+			  <ul class="pagination" >         
+				<li class="page-item"><a th:href="@{/videojuegos/indexPaginate(page=${videojuegos.number - 1})}" class="page-link " th:if="${videojuegos.number>0}">Anterior</a></li>			    
+				<li class="page-item"><a th:href="@{/videojuegos/indexPaginate(page=${videojuegos.number + 1})}" class="page-link" th:if="${videojuegos.totalPages<videojuegos.number-1}">Siguiente</a></li>
 			  </ul>
 			</nav>
             

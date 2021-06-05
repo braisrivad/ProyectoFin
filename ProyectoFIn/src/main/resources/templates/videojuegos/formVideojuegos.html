@@ -56,7 +56,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="categoria">Categoría</label>
-                    <select class="form-control" name="categoria" th:field="*{categoria.id}" id="categoria">
+                    <select class="form-control" name="categoria" th:field="*{categoria.id}" id="categoria" required="required">
                       <option th:each="categoria : ${categorias}" 
 								th:value="${categoria.id}"
 								th:text="${categoria.nombre}">
@@ -68,7 +68,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="estatus">Estatus</label>
-                    <select class="form-control" name="estatus" th:field="*{estatus}" id="estatus">
+                    <select class="form-control" name="estatus" th:field="*{estatus}" id="estatus" required="required">
                       <option value="Alpha">Alpha</option>
                       <option value="Beta">Beta</option>
                       <option value="Released">Released</option>                      
@@ -103,7 +103,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="archivoImagen">Imagen</label>
-                    <input type="file" class="form-control-file" name="archivoImagen" id="archivoImagen">
+                    <input type="file" class="form-control-file" name="archivoImagen" id="archivoImagen" required="required">
                   </div>
                 </div>
               </div> 
