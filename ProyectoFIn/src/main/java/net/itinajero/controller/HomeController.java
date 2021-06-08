@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import net.itinajero.model.Perfil;
 import net.itinajero.model.Usuario;
 import net.itinajero.model.Videojuegos;
@@ -109,12 +110,36 @@ public class HomeController {
 		
 		/**
 		 * Guardamos el usuario en la base de datos. El Perfil se guarda automaticamente
+		 *
 		 */
-		serviceUsuarios.guardar(usuario);
-				
-		attributes.addFlashAttribute("msg", "Has sido registrado. ¡Ahora puedes ingresar al sistema!");
 		
-		return "redirect:/login";
+		
+		if(usuario.getEmail().matches("^[a-zA-Z0-9_.]+@[a-zA-Z.]+?\\.[a-zA-Z]{2,3}$")) {
+			if(usuario.getPassword().matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")) {
+				if(usuario.getNombre().matches("^[A-Za-zñÑ\\s]{1,}[\\.]{0,1}[A-Za-znÑ\\s]{0,}$")) {
+					if(usuario.getUsername().matches("^[A-Za-z][A-Za-z0-9_\\.]{5,14}$")) {
+						
+						serviceUsuarios.guardar(usuario);
+						attributes.addFlashAttribute("msg", "Has sido registrado. ¡Ahora puedes ingresar al sistema!");
+					}
+					else {
+						attributes.addFlashAttribute("err", "Introduce un username correcto");
+					}
+				}else {
+					attributes.addFlashAttribute("err", "Introduce un nombre correcto");
+				}
+			}else {
+				attributes.addFlashAttribute("err", "Introduce una contraseña correcto");
+			}
+		}else {
+			attributes.addFlashAttribute("err", "Introduce un correo electronico correcto");
+		}
+		
+		
+				
+		
+		
+		return "redirect:/signup";
 	}
 	
 	/**
