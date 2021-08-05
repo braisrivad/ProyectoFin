@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Brais' Videogames</title>tudes de Empleo</title>
+    <title>Brais' Videogames</title>
     <!-- Bootstrap core CSS -->
     <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -25,36 +25,38 @@
       <div class="container"> 
 
         <div class="card">
-          <h4 class="card-header"><strong>Listado de Solicitudes de Empleo</strong></h4>              
+          <h4 class="card-header"><strong>Listado de Comentarios</strong></h4>              
           <div class="card-body">
           	<div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+          	<div th:if="${err != null}" class='alert alert-danger' th:text="${err}" role='alert'></div>
             <table class="table table-hover">
               <thead class="thead-light">
                 <tr>
-                  <th scope="col">Categoría</th>
-                  <th scope="col">Vacante</th>
-                  <th scope="col">Nombre Candidato</th>
-                  <th scope="col">Recibida.</th>
+                  <th scope="col">Usuario</th>
+                  <th scope="col">descripcion</th>
+                  <th scope="col">nombre videojuego</th>
+                  <th scope="col">fecha</th>
                   <th scope="col">Operaciones</th>
                 </tr>
               </thead>
               <tbody>
-                <tr th:each="solicitud : ${solicitudes.content}">
-                  <td th:text="${solicitud.vacante.categoria.nombre}">Finanzas</td>
-                  <td th:text="${solicitud.vacante.nombre}">Contador Público</td>
-                  <td th:text="${solicitud.usuario.nombre}">Maria Gómez</td>
-                  <td th:text="${#dates.format(solicitud.fecha, 'dd-MM-yyyy')}">12-01-2019</td>
-                  <td>                    
-                    <a th:href="@{/solicitudes/delete/{id} (id=${solicitud.id}) }" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>                    
-                    <a th:href="@{/cv/{archivo} (archivo=${solicitud.archivo}) } " target="_blank" class="btn btn-success btn-sm" role="button" title="Descargar Curriculm Vitae."><i class="fas fa-download" aria-hidden="true"></i></a>
+                <tr th:each="comentario : ${comentarios.content}">
+                
+                  <td th:text="${comentario.username}">Finanzas</td>
+                  <td th:text="${comentario.descripcion}">Contador Público</td>
+                  <td th:text="${comentario.nombreVideojuegos}">Maria Gómez</td>
+                  <td th:text="${comentario.fechaCreacion}">12-01-2019</td>
+                  <td>              
+                   <a th:href="@{/respuesta/lista/{id} (id=${comentario.id}) }" class="btn btn-success btn-sm" role="button" title="Eliminar respuestas."><i class="fas fa-comment-dots" aria-hidden="true"></i></a>
+                   <a th:href="@{/comentarios/delete/{id} (id=${comentario.id}) }" onclick="return confirm('¿Estas seguro? Se borraran todas las respuestas de este comentario')" class="btn btn-danger btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>     
                   </td>
                 </tr>
               </tbody>
             </table>
-            <nav th:if="${solicitudes.totalPages > 0}" aria-label="Page navigation example" >
+            <nav th:if="${comentarios.totalPages > 0}" aria-label="Page navigation example" >
 			  <ul class="pagination">         
-			    <li class="page-item"><a th:href="@{/solicitudes/indexPaginate(page=${solicitudes.number - 1})}" class="page-link">Anterior</a></li>			    
-			    <li class="page-item"><a th:href="@{/solicitudes/indexPaginate(page=${solicitudes.number + 1})}" class="page-link">Siguiente</a></li>
+			    <li class="page-item"><a th:href="@{/comentarios/indexPaginate(page=${comentarios.number - 1})}" th:if="${comentarios.number>0}" class="page-link">Anterior</a></li>			    
+			    <li class="page-item"><a th:href="@{/comentarios/indexPaginate(page=${comentarios.number + 1})}" th:if="${comentarios.totalPages>comentarios.number+1}" class="page-link">Siguiente</a></li>
 			  </ul>
 			</nav>
           </div>

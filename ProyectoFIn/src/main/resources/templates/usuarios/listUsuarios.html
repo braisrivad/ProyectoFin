@@ -47,8 +47,9 @@
                   <td th:text="${usuario.estatus == 1 ? 'Activo' : 'Bloqueado' }">Activo</td>
                   
                   <td>
-                    <a th:href="@{/usuarios/delete/{id} (id=${usuario.id}) }" onclick="return confirm('¿Estas seguro?')" class="btn btn-danger btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                   <a th:href="@{/usuarios/delete/{id} (id=${usuario.id}) }" onclick="return confirm('¿Estas seguro?')" class="btn btn-danger btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
                     
+					
                     <span th:switch="${usuario.estatus}"> 
                     
                       <a th:case="'1'" th:href="@{/usuarios/lock/{id} (id=${usuario.id}) }" onclick="return confirm('¿Quiere bloquear el acceso al usuario?')" class="btn btn-dark btn-sm" role="button" title="Bloquear el acceso al sistema para este usuario."><i class="fas fa-lock" aria-hidden="true"></i></a>	
@@ -61,7 +62,12 @@
                                
               </tbody>
             </table>
-            
+            <nav th:if="${usuarios.totalPages > 0}" aria-label="Page navigation example" >
+			  <ul class="pagination" >         
+				<li class="page-item"><a th:href="@{/usuarios/indexPaginate(page=${usuarios.number - 1})}" class="page-link " th:if="${usuarios.number>0}">Anterior</a></li>			    
+				<li class="page-item"><a th:href="@{/usuarios/indexPaginate(page=${usuarios.number + 1})}" class="page-link" th:if="${usuarios.totalPages>usuarios.number+1}">Siguiente</a></li>
+			  </ul>
+			</nav>
           </div>
         </div>
       </div> <!-- /container -->

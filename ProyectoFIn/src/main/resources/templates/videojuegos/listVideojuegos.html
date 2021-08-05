@@ -30,6 +30,7 @@
             <a class="btn btn-outline-info" th:href="@{/videojuegos/create}" title="Crear nueva Oferta de Trabajo" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nuevo</a>            
             <hr>
             <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+            <div th:if="${err != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
             <table class="table table-hover table-responsive-lg">
               <thead class="thead-light">
                 <tr>
@@ -57,7 +58,7 @@
                   -->                  
                   <td>
                     <a th:href="@{/videojuegos/edit/{id} (id=${videojuego.id}) }" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                    <a th:href="@{/videojuegos/delete/{id} (id=${videojuego.id}) }" onclick="return confirm('¿Estas seguro?')" class="btn btn-danger btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
+					<a th:href="@{/videojuegos/delete/{id} (id=${videojuego.id}) }" onclick="return confirm('¿Estas seguro?, Se borraran todos los comentarios y respuestas de este videojuego')" class="btn btn-danger btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
                   </td>
                 </tr>                                              
               </tbody>
@@ -66,6 +67,33 @@
 			  <ul class="pagination" >         
 				<li class="page-item"><a th:href="@{/videojuegos/indexPaginate(page=${videojuegos.number - 1})}" class="page-link " th:if="${videojuegos.number>0}">Anterior</a></li>			    
 				<li class="page-item"><a th:href="@{/videojuegos/indexPaginate(page=${videojuegos.number + 1})}" class="page-link" th:if="${videojuegos.totalPages<videojuegos.number-1}">Siguiente</a></li>
+			  </ul>
+			</nav>
+            
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
+  </body>
+</html>
+
+                  </td>
+                </tr>                                              
+              </tbody>
+            </table>
+			<nav th:if="${videojuegos.totalPages > 0}" aria-label="Page navigation example" >
+			  <ul class="pagination" >         
+				<li class="page-item"><a th:href="@{/videojuegos/indexPaginate(page=${videojuegos.number - 1})}" class="page-link " th:if="${videojuegos.number>0}">Anterior</a></li>			    
+				<li class="page-item"><a th:href="@{/videojuegos/indexPaginate(page=${videojuegos.number + 1})}" class="page-link" th:if="${videojuegos.totalPages>videojuegos.number+1}">Siguiente</a></li>
 			  </ul>
 			</nav>
             

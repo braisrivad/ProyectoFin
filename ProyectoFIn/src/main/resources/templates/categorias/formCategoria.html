@@ -32,7 +32,7 @@
                   <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input type="hidden" th:field="*{id}">
-                    <input type="text" class="form-control" th:field="*{nombre}" placeholder="Escriba el nombre de la categoria" required="required">
+                    <input type="text" class="form-control" th:field="*{nombre}" placeholder="Escriba el nombre de la categoria" pattern="^[A-Za-zñÑ\\s]{1,}[\\.]{0,1}[A-Za-znÑ\\s]{0,}$" required="required">
                   </div>
                 </div>                
               </div> 

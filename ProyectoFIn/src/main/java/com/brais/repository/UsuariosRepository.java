@@ -1,0 +1,30 @@
+package com.brais.repository;
+
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import com.brais.model.Usuario;
+
+public interface UsuariosRepository extends JpaRepository<Usuario, Integer> {
+	// Buscar usuario por username
+	Usuario findByUsername(String username);
+	Usuario findByEmail(String email);
+	Usuario findByPassword(String password);
+	Page<Usuario> findByFechaRegistroNotNull(Pageable page);
+	
+	//Metodo para bloquear al usuario
+	@Modifying
+    @Query("UPDATE Usuario u SET u.estatus=0 WHERE u.id = :paramIdUsuario")
+    int lock(@Param("paramIdUsuario") int idUsuario);
+	
+	//Metodo para desbloquear al usuario
+	@Modifying
+    @Query("UPDATE Usuario u SET u.estatus=1 WHERE u.id = :paramIdUsuario")
+    int unlock(@Param("paramIdUsuario") int idUsuario);
+	
+}
