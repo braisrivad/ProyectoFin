@@ -64,7 +64,8 @@ public class HomeController {
     
   
 	@GetMapping("/")
-	public String mostrarHome() {
+	public String mostrarHome(Model model) {
+		
 		return "home";
 	}
 	

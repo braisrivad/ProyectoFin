@@ -53,7 +53,7 @@ public class VideojuegosServiceJpa implements IVideojuegosService{
 
 	@Override
 	public List<Videojuegos> buscarDestacadas() {
-		return videojuegossRepo.findByDestacadoAndEstatusOrderByIdDesc(1, "Released");
+		return videojuegossRepo.findByDestacadoOrderByIdDesc(1);
 	}
 
 	@Override

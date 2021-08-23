@@ -45,7 +45,8 @@
                   <label for="password" class="sr-only">Password</label>
                   <input type="password" name="password" id="password" class="form-control" placeholder="Password" minlength="8" pattern="(?=.*\d)(?=.*[a-z.])(?=.*[A-Z.]).{8,}" required><br>
                   <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-                   <p class="text-primary" style="font-size: small">¿Todavía no estas registrado? <a th:href="@{/signup}">Regístrate</a></p>                  
+                   <p class="text-primary" style="font-size: small">¿Todavía no estas registrado? <a th:href="@{/signup}">Regístrate</a>
+                   <a th:href="@{/recuperarContraseña.html}" >Recuperar contraseña</a></p>                  
                   
                   
                 </div>

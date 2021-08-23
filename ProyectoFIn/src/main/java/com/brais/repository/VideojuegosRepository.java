@@ -8,7 +8,7 @@ public interface VideojuegosRepository extends JpaRepository<Videojuegos, Intege
 	
 	List<Videojuegos> findByEstatus(String estatus);
 	
-	List<Videojuegos> findByDestacadoAndEstatusOrderByIdDesc(int destacado, String estatus);
+	List<Videojuegos> findByDestacadoOrderByIdDesc(int destacado);
 	
 	List<Videojuegos> findByPrecioBetweenOrderByPrecioDesc(double p1, double p2);
 	
